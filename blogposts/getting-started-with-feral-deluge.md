@@ -1,7 +1,7 @@
 ```
 author: @ekilah
 created_at: 2020-05-16
-
+updated_at: 2020-05-17
 ```
 
 # Getting Started with Feral and Deluge
@@ -61,4 +61,5 @@ These steps will work no matter which way you choose to connect to the daemon on
 - Copy your public key to your server (example Mac instructions [here](https://apple.stackexchange.com/a/210133)).
     - This avoids having to enter your password on every SSH login. 
 
+And that's it! You've got a cheap seedbox with great bandwidth and a simple configuration ready to go.
 
