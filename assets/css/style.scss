@@ -38,3 +38,14 @@ h1 a:focus:before, h2 a:focus:before, h3 a:focus:before, h4 a:focus:before {
     position: absolute;
     left: -1.2em;
 }
+
+blockquote {
+    border-left: 4px solid #90e0ff;
+    margin: 0;
+    padding: 16px 60px 1px 20px;
+    font-style: normal;
+    background: #fafafa;
+    font-size: 0.85em;
+    border-radius: 4px 12px 12px 4px;
+    margin-bottom: 20px;
+}
