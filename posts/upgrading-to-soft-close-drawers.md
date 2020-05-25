@@ -1,13 +1,14 @@
 ```
 author: @ekilah
 created_at: 2020-05-21
+updated_at: 2020-05-25
 ```
 
 # [Upgrading to Soft-Close Drawers](#upgrading-to-soft-close-drawers)
 
 Before we even closed on the house we bought last year, my wife and I knew there were several projects we would want to get started ASAP. A few rooms desperately needed a new paint job, some drywall needed repair, some light fixtures needed refreshing... the list hasn't stopped growing since we got the keys. Though neither of us had much experience doing these things growing up, we were mostly comfortable with the projects we were assigning ourselves, because our parents and YouTube could fill most of our knowledge gaps.
 
-However, when my wife mentioned she would like soft-close drawers in our otherwise fairly-up-to-date kitchen, I had very little intuition about the project's requirements, and after having (finally) finished the project, I now know there are a couple of gotchas along the way. Hopefully, sharing my experience can save someone out there some trouble!
+However, when my wife mentioned she would like soft-close drawers in our otherwise fairly-up-to-date kitchen, I had very little intuition about the project's requirements, and after having (finally) finished the project, I now know there are a couple of gotchas along the way. By no means did my implementation come out perfect, but I learned some things and saved some money! Hopefully, sharing my experience can save someone out there some trouble (and money).
 
 
 ## [See what you're working with](#see-what-youre-working-with)
@@ -47,7 +48,12 @@ This video, and other videos / blogs / product descriptions all helped me grasp 
 
 This step was a bit tough. I am far from a contractor, so I don't know where to buy "good" supplies for a project like this, or what brands are trustworthy. My default big-box store didn't seem to have much inventory in this department, so I had to get out of my comfort zone!
 
-I Googled around a bit, and ended up with the "[Knape and Vogt 8450 Series](https://www.build.com/knape-and-vogt-kv8450fm-b22/s836902)" 22" drawer slides. These seemed to have decent reviews, and the price wasn't bad.
+I Googled around a bit, and ended up with the "[Knape and Vogt 8450 Series](https://www.build.com/knape-and-vogt-kv8450fm-b22/s836902)" 22" drawer slides. I can't say too many interesting things re: how I went about choosing these particular drawer slides; these seemed to have decent reviews, and the price wasn't bad. I knew I wanted some that:
+
+* were rated for a decent amount of weight 
+    * these can handle 100lbs per drawer, which is more I'll need
+* could fully extend from the cabinet 
+    * so I can see the contents of the back of the drawer easily
 
 | Item (sold in pairs)             | Price (pair) | Qty | Price (all) |
 |----------------------------------|--------------|-----|-------------|
@@ -91,7 +97,7 @@ In hindsight (I ended up using the brackets in the spring, and redid a couple fr
 
 ## [Finally using the power tools](#finally-using-the-power-tools)
 
-In the spring (when I'm writing this), I redid the math a few times (since I decided to use the front bracket this time), and decided that mounting the side rail `1-7/16"` from the bottom of the drawer should center the drawer exactly `1/2"` from the top and bottom of the face frame opening.
+In the spring (when I'm writing this), I redid the math a few times (since I decided to use the front bracket this time), and decided that mounting the side rail `1-7/16"` from the bottom of the drawer should center the drawer exactly `1/4"` from the top and bottom of the face frame opening.
 
 #### Step 1
 
@@ -145,7 +151,7 @@ _Calculated._
 
 ![notes](/assets/img/soft_close_drawers/measure_twice.jpg)
 
-That's better! After removing and re-attaching the drawer-side slides on each side of the drawer, the drawer fit into the cabinet with the `1/2"` buffer above and below as desired.
+That's better! After removing and re-attaching the drawer-side slides on each side of the drawer, the drawer fit into the cabinet with the `1/4"` buffer above and below as desired.
 
 ![soft close in action](https://i.imgur.com/lLj6eBf.gif)
 
@@ -170,7 +176,7 @@ Your drawers should glide effortlessly along when extending and retracting. A bi
 
 ## [Troubleshooting tips](#troubleshooting-tips)
 
-However, I ran into several drawers that just weren't happy after the first try. Some of them would seem to make a scratching noise at certain stages of the opening/closing range, or just feel "rough." Others just got stuck in the almost closed position, seemingly refusing to engage with the self-closing mechanism that is supposed to pull the drawer in to its final closed position. One wouldn't even open at all without extreme force 😬...
+However, I ran into several drawers that just weren't happy after the first try. Some of them would seem to make a scratching noise at certain stages of the opening/closing range, or just feel "rough." Others just got stuck in the almost closed position, seemingly refusing to engage with the self-closing mechanism that is supposed to pull the drawer in to its final closed position. One wouldn't even open at all without extreme force... 😬
 
 Here are a few things I had to do, somewhat in increasing order of difficulty, to get drawers to open/close more smoothly (or at all).
 
