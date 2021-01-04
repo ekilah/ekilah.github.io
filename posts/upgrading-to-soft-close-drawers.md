@@ -186,7 +186,7 @@ When screwing in the back bracket, you might've thought you were keeping the lev
 
 #### Check the horizontal screw
 
-If you followed __Step 3__ above and used a horizontal slot in the back bracket to allow for adjustment, check if the screw is resting against an edge of the slot now. Your back bracket might want to keep moving in that direction to find it's "happy place", but it can't. Reset the screw towards the center of the slot an try opening/closing the drawer a couple times again (making sure to leave the screws on both back brackets loose still, so they can wiggle).
+If you followed __Step 3__ above and used a horizontal slot in the back bracket to allow for adjustment, check if the screw is resting against an edge of the slot now. Your back bracket might want to keep moving in that direction to find it's "happy place", but it can't. Reset the screw towards the center of the slot and try opening/closing the drawer a couple times again (making sure to leave the screws on both back brackets loose still, so they can wiggle).
 
 #### Widen the cabinet opening (yikes)
 
