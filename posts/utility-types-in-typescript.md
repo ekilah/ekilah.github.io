@@ -5,7 +5,7 @@ updated_at: 2022-02-08
 ```
 
 
-# [Utility types in TypeScript](#)
+# [Utility Types in TypeScript](#)
 
 TypeScript (TS) offers a host of improvements over vanilla JavaScript with its compile-time type system. Codebases small and large can get a lot of benefits from the lightest applications of TS. The simplest, out-of-the-box features of TS can prevent whole classes of errors from occurring at run time and make collaborating way easier.
 
