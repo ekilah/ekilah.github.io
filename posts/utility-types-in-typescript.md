@@ -11,7 +11,7 @@ TypeScript (TS) offers a host of improvements over vanilla JavaScript with its c
 
 However, additions like that (e.g. telling TS which variables are expected to be `string` vs `number`) are just the tip of the iceberg. Experienced TS developers often seek out more advanced tools to squeeze every last drop out of the type system. By doing so, they can unlock additional layers of type safety by communicating more about the intent and meaning of their code to the TS compiler.
 
-Utility types, our topic for today, are an essential tool in a TS developer's toolbox for doing just that. They give you a reusable way to define relationships between types and to operate on existing types to make new ones (often referred to as a type-level operation). Utility types are both fun to explore and fairly powerful, once you get familiar with them, so let's dive in!
+Utility types, our topic for today, are an essential tool in a TS developer's toolbox for doing just that. They give you a reusable way to define relationships between types and to operate on existing types to make new ones. Utility types are both fun to explore and fairly powerful, once you get familiar with them, so let's dive in!
 
 
 ## [Built-in utility types](#built-in-utility-types)
