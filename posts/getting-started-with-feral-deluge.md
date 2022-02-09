@@ -4,7 +4,7 @@ created_at: 2020-05-16
 updated_at: 2020-05-17
 ```
 
-# [Getting Started with Feral and Deluge](#getting-started-with-feral-and-deluge)
+# [Getting Started with Feral and Deluge](#)
 
 Getting a new seedbox up and running on Feralhosting with the Deluge client is mostly easy.
 

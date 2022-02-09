@@ -4,7 +4,7 @@ created_at: 2020-05-21
 updated_at: 2020-05-25
 ```
 
-# [Upgrading to Soft-Close Drawers](#upgrading-to-soft-close-drawers)
+# [Upgrading to Soft-Close Drawers](#)
 
 Before we even closed on the house we bought last year, my wife and I knew there were several projects we would want to get started ASAP. A few rooms desperately needed a new paint job, some drywall needed repair, some light fixtures needed refreshing... the list hasn't stopped growing since we got the keys. Though neither of us had much experience doing these things growing up, we were mostly comfortable with the projects we were assigning ourselves, because our parents and YouTube could fill most of our knowledge gaps.
 

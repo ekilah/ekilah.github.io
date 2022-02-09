@@ -21,7 +21,7 @@ pre {
     padding-bottom: 1em;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3 {
     position: relative;
     cursor: pointer;
 }
@@ -31,8 +31,8 @@ h1 a:focus, h2 a:focus, h3 a:focus, h4 a:focus {
     outline: none;
 }
 
-h1:hover:before, h2:hover:before, h3:hover:before, h4:hover:before,
-h1 a:focus:before, h2 a:focus:before, h3 a:focus:before, h4 a:focus:before {
+h1:hover:before, h2:hover:before, h3:hover:before,
+h1 a:focus:before, h2 a:focus:before, h3 a:focus:before {
     content: '🖇️';
     position: absolute;
     left: -1.2em;
