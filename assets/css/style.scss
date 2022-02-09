@@ -12,9 +12,10 @@ code.highlighter-rouge {
     background: #f2f2f3;
     border-radius: 3px;
     padding: 0px 5px;
+    margin: 0px 1px;
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
-    border: 1px solid #ccc;
+    border: 1px solid #d8d8d8;
 }
 
 pre {
@@ -33,7 +34,7 @@ h1 a:focus, h2 a:focus, h3 a:focus, h4 a:focus {
 
 h1:hover:before, h2:hover:before, h3:hover:before,
 h1 a:focus:before, h2 a:focus:before, h3 a:focus:before {
-    content: '🖇️';
+    /* content: '🖇️';*/
     position: absolute;
     left: -1.2em;
     padding-right: 0.2em;
