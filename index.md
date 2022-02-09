@@ -1,5 +1,8 @@
 ## Blog posts
 
+#### 2022-01-27 - [Utility Types in TypeScript](/posts/utility-types-in-typescript)
+An introduction into built-in type-level operations in TypeScript (xpost from my job @ [Mercury](https://mercury.com)).
+
 #### 2020-05-21 - [Upgrading to Soft-Close Drawers](/posts/upgrading-to-soft-close-drawers)
 My experiences and troubleshooting tips for installing soft-close drawers in existing cabinets.
 
