@@ -14,11 +14,11 @@ However, additions like that (e.g. telling TS which variables are expected to be
 Utility types, our topic for today, are an essential tool in a TS developer's toolbox for doing just that. They give you a reusable way to define relationships between types and to operate on existing types to make new ones (often referred to as a type-level operation). Utility types are both fun to explore and fairly powerful, once you get familiar with them, so let's dive in!
 
 
-## Built-in utility types
+## [Built-in utility types](#built-in-utility-types)
 
 TypeScript actually ships with several utility types that are quite useful. These can be used as-is, and also as building blocks when making your own, more advanced utility types (more on that later). Here, we'll walk through a few of the built-in utility types with some example use cases.
 
-### `NonNullable`
+### [`NonNullable`](#nonnullable)
 
 Let's start with a simple one, `NonNullable<T>`, and break down how it works and how/why you might use it. Starting with the [definition](https://github.com/microsoft/TypeScript/blob/5142e37f2d2af3e1b4d071f82d58097f516cef1b/lib/lib.es5.d.ts#L1518-L1521):
 
@@ -44,7 +44,7 @@ Don't miss a big benefit to defining `Bar` in terms of `Foo` here: if we decide 
 
 
 
-### `Exclude` / `Extract` 
+### [`Exclude` / `Extract`](#excludeextract)
 
 `Exclude` and `Extract` help you pick and choose which members of a union type to keep or discard, similar to `NonNullable`. But, unlike `NonNullable`, `Exclude` and `Extract` let you choose exactly what to keep or discard, rather than assuming you want to discard `null` and `undefined` all the time.
 
@@ -86,13 +86,13 @@ function removeNumbers<T>(list: T[]): Exclude<T, number>[]
 Now, if we have an input list of `number | string`, for example, TS will understand that the result of `removeNumbers` is a list of `string`, instead of seeing `number | string` still, or worse, `any`.
 
 
-### `Pick`/`Omit`
+### [`Pick`/`Omit`](#pickomit)
 
 Have you ever had a type or interface representing an object's structure in TypeScript, and wanted to replicate it, but with a few changes? `Pick` and `Omit` are perfect for that.
 
 If you're thinking that this all sounds similar to what we already talked about with `Exclude` and `Extract`, great job paying close attention! `Pick` and `Omit` are to object types as `Extract` and `Exclude` are to union types; both let you keep or discard certain pieces of a given type. Remembering which is which can even be difficult sometimes! If anyone out there has a good memory device for this, let me know. 😅
 
-#### `Pick`
+#### [`Pick`](#pick)
 
 A common use case for `Pick` comes up a lot for us in our React codebase here at Mercury. Let's say you have two components in a parent-child relationship, and several of the `props` passed to the child are also passed to the parent from some other component. For example, say all three of these props are passed to the parent, used there, and also passed to the child:
 
@@ -132,7 +132,7 @@ type ParentProps = Pick<ChildProps, 'user' | 'business' | 'options'> & {
 
 Now, if there's a fourth prop both components want to share later, you have fewer places to edit and keep in sync. It's also obvious to people reading this code later that there is a direct and intentional relationship between the props types of both components. 🎉
 
-#### `Omit`
+#### [`Omit`](#omit)
 
 `Omit` is, roughly speaking, the exact opposite of `Pick`, in that it allows you to specify which keys to _leave out_ of the resulting type, rather than which to keep. In fact, the [definition](https://github.com/microsoft/TypeScript/blob/5142e37f2d2af3e1b4d071f82d58097f516cef1b/lib/lib.es5.d.ts#L1513-L1516) of `Omit` builds on `Pick`:
 
@@ -188,7 +188,7 @@ type UserData = Omit<UserDataFromAPI, 'birthdate' | 'signedUpAt'> & {
 
 
   
-### `Required`
+### [`Required`](#required)
 
 As mentioned above, `Exclude` and `Omit` are pretty similar in concept; the former is for union types and the latter is for object types. So is there something like `NonNullable`, which removes nullish types from a union, but for object types?
 
@@ -256,7 +256,7 @@ const defaults: Required<OptionalOptions> = {
 Defining `defaults` this way will require that any additions/changes to `OptionalOptions` are also reflected in `defaults`, whether the dev making those changes knew about `defaults` or not. Leveraging the TS compiler to make sure related code is updated when a type changes is a huge win!
 
 
-### `Partial`
+### [`Partial`](#partial)
 
 [`Partial`](https://github.com/microsoft/TypeScript/blob/5142e37f2d2af3e1b4d071f82d58097f516cef1b/lib/lib.es5.d.ts#L1468-L1473) naturally follows `Required` - `Partial` will add optionality (via `?`) to every key of an object type for you.
 
@@ -272,11 +272,11 @@ type Partial<T> = {
 If you'd like an example, think about how you could use `Partial` to derive `OptionalOptions` above, if you started with a type without the `?`s first.
 
 
-## ...and many more!
+## [...and many more!](#and-many-more)
 
 We'll leave [the rest](https://github.com/microsoft/TypeScript/blob/5142e37f2d2af3e1b4d071f82d58097f516cef1b/lib/lib.es5.d.ts#L1468-L1561) for you to explore on your own. `Record`, `Parameters`, and `ReturnType` are some good ones to familiarize yourself with too, if you want a place to start!
 
-## Make your own
+## [Make your own](#make-your-own)
 
 Using TS's built-in utility types, you can construct your own utility types that are either easier to reuse, have nicer names, or do more specific things you find useful. The main challenge, in my opinion, is mastering the relatively odd syntax TS uses to define them. Following the built-in types, and some great open-source resources, is my best recommendation for getting used to these!
 
