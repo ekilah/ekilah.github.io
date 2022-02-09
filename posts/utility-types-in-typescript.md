@@ -5,7 +5,7 @@ updated_at: 2022-02-08
 ```
 
 
-# [Utility Types in TypeScript](#)
+# [Utility types in TypeScript](#)
 
 TypeScript (TS) offers a host of improvements over vanilla JavaScript with its compile-time type system. Codebases small and large can get a lot of benefits from the lightest applications of TS. The simplest, out-of-the-box features of TS can prevent whole classes of errors from occurring at run time and make collaborating way easier.
 
@@ -96,18 +96,21 @@ If you're thinking that this all sounds similar to what we already talked about 
 
 A common use case for `Pick` comes up a lot for us in our React codebase here at Mercury. Let's say you have two components in a parent-child relationship, and several of the `props` passed to the child are also passed to the parent from some other component. For example, say all three of these props are passed to the parent, used there, and also passed to the child:
 
-```
-user: UserData
-business: BusinessData
-options: SomeOptions
+```ts
+type SharedProps = {
+  user: UserData
+  business: BusinessData
+  options: SomeOptions
+}
 ```
 
 The parent and child both have other props, so you can't reuse the same type for both. Since the components only share some props, it's tempting to copy & paste the shared parts to both components and move on. However, this can make things more difficult as your components and codebase grow:
 
 * Refactoring is harder - if you change one of these shared props' type, you have to change it in many places
 * Three shared props is probably fine, but it doesn't take long for this to grow to a much longer list of shared props
+* You could export the `SharedProps` type above, but this pattern might get old: you have to define props in a shared location every time you have a parent/child relationship like this, give the shared type a good name, and pollute the global namespace with this extra export
 
-Or, in other words, `Don't Repeat Yourself`! We can use TS's built-in `Pick` to dry this code up nicely - here's the [definition](https://github.com/microsoft/TypeScript/blob/5142e37f2d2af3e1b4d071f82d58097f516cef1b/lib/lib.es5.d.ts#L1489-L1494):
+The first two points can be summarized as `Don't Repeat Yourself`! We can use TS's built-in `Pick` to dry this code up nicely - here's the [definition](https://github.com/microsoft/TypeScript/blob/5142e37f2d2af3e1b4d071f82d58097f516cef1b/lib/lib.es5.d.ts#L1489-L1494):
 
 ```ts
 /**
