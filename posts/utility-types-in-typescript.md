@@ -7,16 +7,16 @@ updated_at: 2022-01-27
 
 # Utility types in TypeScript
 
-TypeScript (TS) offers a host of improvements over vanilla JavaScript with its compile-time type system, and codebases small and large can get a lot of benefits from the lightest applications of TS. The simplest, out-of-the box features of TS can prevent whole classes of errors from occuring at run time and make collaborating way easier.
+TypeScript (TS) offers a host of improvements over vanilla JavaScript with its compile-time type system. Codebases small and large can get a lot of benefits from the lightest applications of TS. The simplest, out-of-the-box features of TS can prevent whole classes of errors from occurring at run time and make collaborating way easier.
 
-However, those easier additions (e.g. telling TS which variables are expected to be `string` vs `number`) are just the tip of the iceberg. Experienced TS developers often seek out more advanced tools to squeeze every last drop out of the type system, unlocking additional layers of type safety by communicating more about the intent and meaning of their code to the TS compiler.
+However, additions like that (e.g. telling TS which variables are expected to be `string` vs `number`) are just the tip of the iceberg. Experienced TS developers often seek out more advanced tools to squeeze every last drop out of the type system. By doing so, they can unlock additional layers of type safety by communicating more about the intent and meaning of their code to the TS compiler.
 
-Utility types, our topic for today, are an essential tool in a TS developer's toolbox for doing just that. They give you a reusable way to define relationships between types and to operate on exixting types to make new ones (often referred to as a type-level operation). Utility types are both fun to explore and fairly powerful, once you get familar with them, so let's dive in!
+Utility types, our topic for today, are an essential tool in a TS developer's toolbox for doing just that. They give you a reusable way to define relationships between types and to operate on existing types to make new ones (often referred to as a type-level operation). Utility types are both fun to explore and fairly powerful, once you get familiar with them, so let's dive in!
 
 
 ## Built-in utility types
 
-TypeScript actually ships with several utility types that are quite useful and easy to understand, though a surprising number of TS developers we've talked to aren't familiar with them. While most of these are simpler utilities, they are useful as-is, and are also useful as building blocks when making your own, more advanced utility types (more on that later).
+TypeScript actually ships with several utility types that are quite useful. These can be used as-is, and also as building blocks when making your own, more advanced utility types (more on that later). Here, we'll walk through a few of the built-in utility types with some example use cases.
 
 ### `NonNullable`
 
@@ -29,13 +29,13 @@ Let's start with a simple one, `NonNullable<T>`, and break down how it works and
 type NonNullable<T> = T extends null | undefined ? never : T
 ```
 
-As the documentation suggests, this utilty type takes an input type (`T`), removes `null` and `undefined` from it (if present), and returns the result. `never` here is TypeScript's way of removing something from a type in these type-level ternary statements, called [Conditional Types](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html).
+As the documentation suggests, this utility type takes an input type (`T`), removes `null` and `undefined` from it (if present), and returns the result. `never` here is TypeScript's way of removing something from a type in these type-level ternary statements, called [Conditional Types](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html).
 
-Simple enough, so let's see an example. Given a type like `Foo`, we can programmatically create a related type `Bar`, where `Bar` is like `Foo` but doesn't include either of JavaScript's nullish types.
+Let's see an example. Given a type like `Foo`, we can programmatically create a related type `Bar`, where `Bar` is like `Foo` but doesn't include either of JavaScript's nullish types.
 
 ```ts
 type Foo = string | boolean | null
-type Bar = NonNullable<Foo> // Bar is `string | boolean`
+type Bar = NonNullable<Foo> // Bar evaluates to `string | boolean`
 ```
 
 Now, remember, this is a type-level operation; as with all TypeScript typings, this is a compile-time construct. `NonNullable` doesn't do anything to your data at runtime, it's just a way to change the type `Foo` into something else. It's still up to you to actually transform your data from one type to another.
@@ -46,7 +46,7 @@ Don't miss a big benefit to defining `Bar` in terms of `Foo` here: if we decide 
 
 ### `Exclude` / `Extract` 
 
-Similar to the goals of `NonNullable`, `Exclude` and `Extract` exist to help you pick and choose which members of a union type to keep or discard. But, unlike `NonNullable`, `Exclude` and `Extract` let you choose exactly what to keep or discard, rather than assuming you want to discard `null` and `undefined` all the time.
+`Exclude` and `Extract` help you pick and choose which members of a union type to keep or discard, similar to `NonNullable`. But, unlike `NonNullable`, `Exclude` and `Extract` let you choose exactly what to keep or discard, rather than assuming you want to discard `null` and `undefined` all the time.
 
 You'll notice that the [definitions](https://github.com/microsoft/TypeScript/blob/5142e37f2d2af3e1b4d071f82d58097f516cef1b/lib/lib.es5.d.ts#L1513-L1516) of these two even look strikingly familiar:
 
@@ -62,15 +62,15 @@ type Exclude<T, U> = T extends U ? never : T
 type Extract<T, U> = T extends U ? T : never
 ```
 
-In fact, `Exclude<Foo, null | undefined>` is eqivalent to `NonNullable<Foo>`.
+In fact, `Exclude<Foo, null | undefined>` is equivalent to `NonNullable<Foo>`.
 
-Let's walk through one example use case for `Exclude`. Say you have a function in your codebase that removes all the numbers from a heterogenous list:
+Let's walk through one example use case for `Exclude`. Say you have a function in your codebase that removes all the numbers from a heterogeneous list:
 
 ```js
 function removeNumbers(list)
 ```
 
-How can we nicely model this function with TypeScript? There are a few common easy-way-out options:
+How can we nicely model this function with TypeScript? There are a few common, easy-way-out options:
 
 ```ts
 function removeNumbers(list: any[]): any[]
@@ -90,7 +90,7 @@ Now, if we have an input list of `number | string`, for example, TS will underst
 
 Have you ever had a type or interface representing an object's structure in TypeScript, and wanted to replicate it, but with a few changes? `Pick` and `Omit` are perfect for that.
 
-If you're thinking that this all sounds pretty similar to what we already talked about with `Exclude` and `Extract`, great job paying close attention! `Pick` and `Omit` are to object types as `Extract` and `Exclude` are to union types; both let you keep or discard certain pieces of a given type. Remembering which is which can even be difficult sometimes! If anyone out there has a good memory device for this, let me know. 😅
+If you're thinking that this all sounds similar to what we already talked about with `Exclude` and `Extract`, great job paying close attention! `Pick` and `Omit` are to object types as `Extract` and `Exclude` are to union types; both let you keep or discard certain pieces of a given type. Remembering which is which can even be difficult sometimes! If anyone out there has a good memory device for this, let me know. 😅
 
 #### `Pick`
 
@@ -102,9 +102,9 @@ business: BusinessData
 options: SomeOptions
 ```
 
-However, the parent component has other props, and so does the child, so you can't reuse a type for both the parent's and child's props. Since there are only a few shared props, it's common to just copy/paste the shared things to both the parent's and child's props type, and move on. However, this makes a few things more difficult as your components and codebase grow:
+The parent and child both have other props, so you can't reuse the same type for both. Since the components only share some props, it's tempting to copy & paste the shared parts to both components and move on. However, this can make things more difficult as your components and codebase grow:
 
-* Refactoring is harder - if you change one of these shared props' type, you have to change it in a ton of places
+* Refactoring is harder - if you change one of these shared props' type, you have to change it in many places
 * Three shared props is probably fine, but it doesn't take long for this to grow to a much longer list of shared props
 
 Or, in other words, `Don't Repeat Yourself`! We can use TS's built-in `Pick` to dry this code up nicely - here's the [definition](https://github.com/microsoft/TypeScript/blob/5142e37f2d2af3e1b4d071f82d58097f516cef1b/lib/lib.es5.d.ts#L1489-L1494):
@@ -156,7 +156,7 @@ type UserDataFromAPI = {
 }
 ```
 
-Somewhere in your application, you decide to start rendering those dates (`birthdate` and `signedUpAt`, and get tired of calling `new Date()` every time you need a `Date` object from those date strings from the JSON API. So what you really want is this type instead:
+Somewhere in your application, you decide to start rendering those dates (`birthdate` and `signedUpAt`), and get tired of calling `new Date()` every time you need a `Date` object from those date strings from the JSON API. So what you really want is this type instead:
 
 ```ts
 type UserData = {
@@ -169,7 +169,7 @@ type UserData = {
 }
 ```
 
-Now, you could just make that type manually, which would work fine for a while, but as soon as you start making edits to `UserDataFromAPI`, you'll realize that it's annoying to have to remember to manually update `UserData` as well. And as your team grows, you worry that other developers won't be aware of this tightly-linked relationship between `UserDataFromAPI` and `UserData`. `Omit` to the rescue!
+Now, you could make that type manually, which would work fine for a while. But, as soon as you start making edits to `UserDataFromAPI`, you'll realize that it's annoying to have to remember to manually update `UserData` as well. And as your team grows, you worry that other developers won't be aware of this tightly-linked relationship between `UserDataFromAPI` and `UserData`. `Omit` to the rescue!
 
 
 With `Omit`, we can create `UserData` in such a way that it stays in sync with `UserDataFromAPI` over time, while still managing to make the edits we want to make to it. `Omit` takes two inputs, the object type to modify and the list of keys to remove from that type. We can then combine the output of `Omit` with an inline type that uses `Date` like we wanted:
@@ -188,7 +188,7 @@ type UserData = Omit<UserDataFromAPI, 'birthdate' | 'signedUpAt'> & {
 
 
   
-### `Required` / `Partial`
+### `Required`
 
 As mentioned above, `Exclude` and `Omit` are pretty similar in concept; the former is for union types and the latter is for object types. So is there something like `NonNullable`, which removes nullish types from a union, but for object types?
 
@@ -253,12 +253,12 @@ const defaults: Required<OptionalOptions> = {
 }
 ```
 
-Defining `defaults` this way will require that any additions/changes to `OptionalOptions` are also reflected in `defaults`, whether the dev making those changes knew about `defaults` or not.
+Defining `defaults` this way will require that any additions/changes to `OptionalOptions` are also reflected in `defaults`, whether the dev making those changes knew about `defaults` or not. Leveraging the TS compiler to make sure related code is updated when a type changes is a huge win!
 
 
-#### `Partial`
+### `Partial`
 
-[`Partial`](https://github.com/microsoft/TypeScript/blob/5142e37f2d2af3e1b4d071f82d58097f516cef1b/lib/lib.es5.d.ts#L1468-L1473) naturally follows `Required` - `Partial` will add a optionality (via `?`) to every key of an object type for you.
+[`Partial`](https://github.com/microsoft/TypeScript/blob/5142e37f2d2af3e1b4d071f82d58097f516cef1b/lib/lib.es5.d.ts#L1468-L1473) naturally follows `Required` - `Partial` will add optionality (via `?`) to every key of an object type for you.
 
 ```ts
 /**
@@ -274,13 +274,13 @@ If you'd like an example, think about how you could use `Partial` to derive `Opt
 
 ## ...and many more!
 
-This post is already too long, so we'll leave [the rest](https://github.com/microsoft/TypeScript/blob/5142e37f2d2af3e1b4d071f82d58097f516cef1b/lib/lib.es5.d.ts#L1468-L1561) for you to explore on your own. `Record`, `Parameters`, and `ReturnType` are some good ones to familiarize yourself with too, if you want a place to start!
+We'll leave [the rest](https://github.com/microsoft/TypeScript/blob/5142e37f2d2af3e1b4d071f82d58097f516cef1b/lib/lib.es5.d.ts#L1468-L1561) for you to explore on your own. `Record`, `Parameters`, and `ReturnType` are some good ones to familiarize yourself with too, if you want a place to start!
 
 ## Make your own
 
 Using TS's built-in utility types, you can construct your own utility types that are either easier to reuse, have nicer names, or do more specific things you find useful. The main challenge, in my opinion, is mastering the relatively odd syntax TS uses to define them. Following the built-in types, and some great open-source resources, is my best recommendation for getting used to these!
 
-Speaking of open-source resources, here are some links for you to explore on your own, when you're ready for more advanced utility types:
+Speaking of open-source resources, here are some links for you to explore, when you're ready for more advanced utility types:
 
 - [type-zoo](https://github.com/pelotom/type-zoo)
 	- Mostly simple utility types that could/should be included with TS itself
