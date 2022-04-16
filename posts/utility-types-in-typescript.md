@@ -1,7 +1,7 @@
 ```
 author: @ekilah
 created_at: 2022-01-27
-updated_at: 2022-02-08
+updated_at: 2022-04-15
 ```
 
 
@@ -287,6 +287,6 @@ Speaking of open-source resources, here are some links for you to explore, when 
 
 - [type-zoo](https://github.com/pelotom/type-zoo)
 	- Mostly simple utility types that could/should be included with TS itself
+- [type-fest](https://github.com/sindresorhus/type-fest) 
 - [ts-toolbelt](https://github.com/millsp/ts-toolbelt)
-	- Many more advanced utility types that build on what we covered here, and beyond
 	- The author of `ts-toolbelt` also wrote a detailed [blog post](https://medium.com/free-code-camp/typescript-curry-ramda-types-f747e99744ab) on how he used utility types like these to model some of Ramda's more complicated functions
