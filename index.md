@@ -1,5 +1,8 @@
 ## Blog posts
 
+#### [2022-04-20 - Responding to Heroku's shutdown of their GitHub Integration](/posts/heroku-shutdown-github-integration)
+Detailing how to work around Heroku's 2022 temporary shutdown of their GitHub integration.
+
 #### [2022-01-27 - Utility Types in TypeScript](/posts/utility-types-in-typescript)
 An introduction into built-in type-level operations in TypeScript (xpost from my job @ [Mercury](https://mercury.com)).
 
