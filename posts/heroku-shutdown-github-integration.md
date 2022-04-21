@@ -30,7 +30,7 @@ The internet seems to lack many posts about how to use Heroku without a GitHub O
 
 ## [What this post covers](#what-this-post-covers)
 
-In this post, I will go through the steps I took to get a Heroku build pipleline back up and running this week. The end result isn't perfect, and I will still look to re-enable the GitHub integration on Heroku's dashboard when we can, ultimately reverting a lot of these changes as a result. But, in the meantime, these changes have gotten us past the blockers Heroku's outage presented.
+In this post, I will go through the steps I took to get a Heroku build pipeline back up and running this week. The end result isn't perfect, and I will still look to re-enable the GitHub integration on Heroku's dashboard when we can, ultimately reverting a lot of these changes as a result. But, in the meantime, these changes have gotten us past the blockers Heroku's outage presented.
 
 The pieces we used that I fixed: 
 
@@ -65,7 +65,7 @@ I found these two docs to be most helpful in this process, so I'll link to them 
 
 Orbs, if you don't know, are bits of CircleCI config bundled up for reuse. Including one in your config file is easy, and doing so gives you access to jobs/commands/executors/etc that the Orb defines.
 
-Luckily for us, Heroku maitains an Orb with decent-enough documentation for use with CircleCI, so deploying to Heroku from a CircleCI job isn't all that hard.
+Luckily for us, Heroku maintains an Orb with decent-enough documentation for use with CircleCI, so deploying to Heroku from a CircleCI job isn't all that hard.
 
 Include this at the top level of your `.circleci/.config.yml` file to import the Orb:
 
@@ -123,11 +123,11 @@ Let's walk through this config step-by-step:
 - First we define some details about the machine type to use and the `working_directory` this job should use on the machine.
     - I used `small`, CircleCI's smallest resource class, because this job just does some simple HTTP/git commands, which don't need a lot of computing power.
 - Then you define the `steps` for the job, which is a list of `commands`.
-    - `checkout` is something CirleCI provides, which clones your git repo for you.
+    - `checkout` is something CircleCI provides, which clones your git repo for you.
     - `heroku/install` is from the Heroku Orb, and it installs the Heroku CLI tools so you can use them.
     - `heroku/check-authentication` verifies that `HEROKU_API_KEY` is set in the environment, which is required for the Heroku CLI operations we're about to use. Nice as a sanity check.
-        - I added this environment variable via CircleCI's dashboard to my entire project. You can also set it within a `Context` as descrived above.
-    - The custom comamnd via `run` here sets `HEROKU_APP_NAME` into another environment variable, which will be used by `heroku/deploy-via-git`
+        - I added this environment variable via CircleCI's dashboard to my entire project. You can also set it within a `Context` as described above.
+    - The custom command via `run` here sets `HEROKU_APP_NAME` into another environment variable, which will be used by `heroku/deploy-via-git`
         - The way we did this looks odd, but this whole "insert an `export` command into `$BASH_ENV`" bit gets around the fact that each `step` runs in isolation, which prevents you from doing something simpler like `export HEROKU_APP_NAME=...`. ([docs link](https://circleci.com/docs/2.0/env-vars/#using-parameters-and-bash-environment))
     - `heroku/deploy-via-git` will take `HEROKU_APP_NAME` and `HEROKU_API_KEY` and deploy the current branch (reading from CircleCI's `CIRCLE_BRANCH` env var) to the given Heroku app.
 
@@ -151,7 +151,7 @@ The problem is that many projects have _multiple_ "default branches", meaning br
 **Update:** CircleCI got back to me within a couple of days, and they were able to do a pattern-based fix on their end, so now my default branch patterns are `master`, `staging`, and `staging-*`, which is exactly what I wanted. The quoted section below goes into my workaround before they applied this setting for me.
 
 > Without this feature, and with the "Only build pull requests" feature enabled, our staging branches won't have CI run on them. Not great if I want CI to trigger builds on those branches. The good news is that you can manually trigger CI builds for any branch on CircleCI's dashboard. This is pretty lame compared to automatic deploys like we had before, but a small cost to pay for now.
-> > In the future, we could probably automate this by calling the CirlceCI API to trigger the staging CI pipeline, but that felt like a whole lot of work (presumably I need to do this via something else like GHA?) for not a lot of gain in the short term. CircleCI should really solve this.
+> > In the future, we could probably automate this by calling the CircleCI API to trigger the staging CI pipeline, but that felt like a whole lot of work (presumably I need to do this via something else like GHA?) for not a lot of gain in the short term. CircleCI should really solve this.
 
 Here's the config, for completeness. We define a new `job` at the top level of the config, along with a reusable `executor` since the machine details are the same as our other job:
 
@@ -180,7 +180,7 @@ jobs:
 
 This is mostly the same as `deploy_master_to_production` from earlier, except the force push (we needed it here) and that `HEROKU_APP_NAME` is now dynamic.
 
-Our Heroku app names for staging envs follows a pattern, where the branch name is at the end of the app name, so I was able to insert `CIRCLE_BRANCH` into `HEROKU_APP_NAME`. With this setup, all of our staging branches can use this same job, and no changes are required here for future staging envs:
+Our Heroku app names for staging envs follow a pattern, where the branch name is at the end of the app name, so I was able to insert `CIRCLE_BRANCH` into `HEROKU_APP_NAME`. With this setup, all of our staging branches can use this same job, and no changes are required here for future staging envs:
 
 ```yml
 workflows:
@@ -207,7 +207,7 @@ I haven't gotten around to replicating these nice-to-have UX features, but I def
 
 Luckily for us, Heroku's own API documentation seemed to disagree. So, off to the [Review App API docs](https://devcenter.heroku.com/articles/platform-api-reference#review-app). These docs describe a few APIs that allow us to create, query for a list of, and delete Review Apps. Great!
 
-However, I immediately noticed a problem: the Create API requires you to pass a publicly-accesible URL to a `tarball` of the code you wish to deploy to a Review App. Naturally, this won't work well with private repositories.
+However, I immediately noticed a problem: the Create API requires you to pass a publicly-accessible URL to a `tarball` of the code you wish to deploy to a Review App. Naturally, this won't work well with private repositories.
 
 Googling around led me to [this article](https://help.heroku.com/5WGYZ74Q/what-should-i-use-for-the-value-of-source_blob-when-creating-apps-via-the-platform-api) on Heroku's support site, which suggested using HTTP Basic Authentication via `https://username:token@api.github.com`-formatted URLs to get around this issue. Let's try it.
 
@@ -274,7 +274,7 @@ jobs:
       - deploy_review_app_to_heroku_cmd
 ```
 
-Done! Push this up into a new PR and you'll see your Review App start building on Heroku. Note that this job will not wait for the Heroku build to actually succeed (it just calls the API and finishes), but I didn't want that anyway. I'd rather not tie up a CircleCI executor waiting for Heroku machine to do it's job. 
+Done! Push this up into a new PR and you'll see your Review App start building on Heroku. Note that this job will not wait for the Heroku build to actually succeed (it just calls the API and finishes), but I didn't want that anyway. I'd rather not tie up a CircleCI executor waiting for a Heroku machine to do its job. 
 
 
 ![review app building on heroku](/assets/img/heroku_github/review-app-building-on-heroku.png)
@@ -328,7 +328,7 @@ commands:
 
 The last step here is to not _always_ delete the previous Heroku Review App for a given PR. I want to give the developer a choice in the matter, so they can choose if/when they want to delete the old Review App and create a new one. I chose this method to reduce the pain of pushing commits, but it will increase the work required to update a Review App a little. 
 
-Just like our staging environments earlier, we'll require a dev go to the CircleCI dashboard, but this time, they will be choosing to approve an optional job on the existing CI pipeline for their branch.
+Just like our staging environments required pre-secret-CircleCi-setting-fix above, we'll require devs to go to the CircleCI dashboard, but this time, they will be choosing to approve an optional job on the existing CI pipeline for their branch.
 
 This can be done with a feature called an "approval job" on CircleCI. Adding `type: approval` to a workflow's job definition will create a job that requires a human to click a button before other, dependent jobs run.
 
