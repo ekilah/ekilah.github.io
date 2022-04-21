@@ -1,6 +1,7 @@
 ```
 author: @ekilah
 created_at: 2022-04-20
+updated_at: 2022-04-21
 ```
 
 # [Responding to Heroku's shutdown of their GitHub Integration](#)
@@ -145,11 +146,12 @@ The biggest problem with applying the earlier fix for `master` to our staging en
 
 To curtail wasted CI cycles, CircleCI has a setting to only run CI on open PRs, which skips commits pushed that have no associated PR yet. This is essential for large teams, since CI has limited resources that would be wasted on commits not yet ready for tests/review. That setting has a built-in exception so that your default branch is always built (you usually want CI to run on `master` to make sure merges pass tests on it, and/or to deploy it).
 
-The problem is that many projects have _multiple_ "default branches", meaning branches other than `master` that they always want CI to run on. CircleCI [does not support this on their dashboard](https://ideas.circleci.com/cloud-feature-requests/p/allow-branch-whitelist-to-override-only-build-pull-requests), though there is apparently [a way for their support team](https://discuss.circleci.com/t/unable-to-limit-builds-to-only-prs-and-multiple-whitelisted-branches/39561/2) to do this for you. I haven't heard back from them on this yet, but I did ask.
+The problem is that many projects have _multiple_ "default branches", meaning branches other than `master` that they always want CI to run on. CircleCI [does not support this on their dashboard](https://ideas.circleci.com/cloud-feature-requests/p/allow-branch-whitelist-to-override-only-build-pull-requests), though there is apparently [a way for their support team](https://discuss.circleci.com/t/unable-to-limit-builds-to-only-prs-and-multiple-whitelisted-branches/39561/2) to do this for you. ~I haven't heard back from them on this yet, but I did ask.~ 
 
-Without this feature, and with the "Only build pull requests" feature enabled, our staging branches won't have CI run on them. Not great if I want CI to trigger builds on those branches. The good news is that you can manually trigger CI builds for any branch on CircleCI's dashboard. This is pretty lame compared to automatic deploys like we had before, but a small cost to pay for now.
+**Update:** CircleCI got back to me within a couple of days, and they were able to do a pattern-based fix on their end, so now my default branch patterns are `master`, `staging`, and `staging-*`, which is exactly what I wanted. The quoted section below goes into my workaround before they applied this setting for me.
 
-> In the future, we could probably automate this by calling the CirlceCI API to trigger the staging CI pipeline, but that felt like a whole lot of work (presumably I need to do this via something else like GHA?) for not a lot of gain in the short term. CircleCI should really solve this.
+> Without this feature, and with the "Only build pull requests" feature enabled, our staging branches won't have CI run on them. Not great if I want CI to trigger builds on those branches. The good news is that you can manually trigger CI builds for any branch on CircleCI's dashboard. This is pretty lame compared to automatic deploys like we had before, but a small cost to pay for now.
+> > In the future, we could probably automate this by calling the CirlceCI API to trigger the staging CI pipeline, but that felt like a whole lot of work (presumably I need to do this via something else like GHA?) for not a lot of gain in the short term. CircleCI should really solve this.
 
 Here's the config, for completeness. We define a new `job` at the top level of the config, along with a reusable `executor` since the machine details are the same as our other job:
 
