@@ -34,7 +34,7 @@ Follow these instructions to get a local Deluge client running, if you don't pre
   - NB: You must be on the same major version of Deluge as Feral has installed for you on your seedbox. At the time of writing, Feral is installing 1.x for you, so don't use the 2.x client locally - the 2.x client can't connect to the 1.x daemon (I found this out the hard way).  
 - Start the local Deluge client and set it to "thin client" mode. This "thin" mode will enable you to control the daemon running on your seedbox, to e.g. add/manage/remove files. Then, enter the details from the `printf` in the last step into the Deluge Connection Manager's "New Connection" wizard, and connect to the daemon.
 
-> If it doesn't let you click "Connect", the port Feral allocated to you for incomming connectiosn might be conficting with another user on the same box. Contact their support if this happens; they may have to change your config for you.
+> If it doesn't let you click "Connect", the port Feral allocated to you for incomming connections might be conficting with another user on the same box. Contact their support if this happens; they may have to change your config for you.
 > 
 > You can tell if there is an issue by looking at `~/.config/deluge/deluged.log` on your Feral box, and look for this error: `Couldn't listen on any:XXXXX: [Errno 98] Address already in use.` (Xs are the port number from the `printf` above) ([source](https://www.feralhosting.com/wiki/software/deluge#troubleshooting)).
 
