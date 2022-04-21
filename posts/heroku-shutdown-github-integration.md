@@ -67,7 +67,7 @@ Orbs, if you don't know, are bits of CircleCI config bundled up for reuse. Inclu
 
 Luckily for us, Heroku maintains an Orb with decent-enough documentation for use with CircleCI, so deploying to Heroku from a CircleCI job isn't all that hard.
 
-Include this at the top level of your `.circleci/.config.yml` file to import the Orb:
+Include this at the top level of your `.circleci/config.yml` file to import the Orb:
 
 ```yml
 orbs:
@@ -146,7 +146,7 @@ The biggest problem with applying the earlier fix for `master` to our staging en
 
 To curtail wasted CI cycles, CircleCI has a setting to only run CI on open PRs, which skips commits pushed that have no associated PR yet. This is essential for large teams, since CI has limited resources that would be wasted on commits not yet ready for tests/review. That setting has a built-in exception so that your default branch is always built (you usually want CI to run on `master` to make sure merges pass tests on it, and/or to deploy it).
 
-The problem is that many projects have _multiple_ "default branches", meaning branches other than `master` that they always want CI to run on. CircleCI [does not support this on their dashboard](https://ideas.circleci.com/cloud-feature-requests/p/allow-branch-whitelist-to-override-only-build-pull-requests), though there is apparently [a way for their support team](https://discuss.circleci.com/t/unable-to-limit-builds-to-only-prs-and-multiple-whitelisted-branches/39561/2) to do this for you. ~I haven't heard back from them on this yet, but I did ask.~ 
+The problem is that many projects have _multiple_ "default branches", meaning branches other than `master` that they always want CI to run on. CircleCI [does not support this on their dashboard](https://ideas.circleci.com/cloud-feature-requests/p/allow-branch-whitelist-to-override-only-build-pull-requests), though there is apparently [a way for their support team](https://discuss.circleci.com/t/unable-to-limit-builds-to-only-prs-and-multiple-whitelisted-branches/39561/2) to do this for you. ~~I haven't heard back from them on this yet, but I did ask.~~
 
 **Update:** CircleCI got back to me within a couple of days, and they were able to do a pattern-based fix on their end, so now my default branch patterns are `master`, `staging`, and `staging-*`, which is exactly what I wanted. The quoted section below goes into my workaround before they applied this setting for me.
 
