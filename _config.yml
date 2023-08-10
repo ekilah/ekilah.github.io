@@ -10,6 +10,7 @@ plugins:
 github:
   is_project_page: false
   is_user_page: false
+permalink: /:categories/:year/:month/:day/:title # get rid of `.html` extension on canonical URLs, links, etc., for posts. same as `pretty` but without trailing slash.
 # markdown: GFM
 
 # for https://github.com/jekyll/jekyll-sitemap
