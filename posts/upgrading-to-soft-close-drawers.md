@@ -1,6 +1,7 @@
 ---
 title: Upgrading to Soft-Close Drawers
 description: Some of my learnings while upgrading kitchen drawers from old sliders to soft-close drawers for the first time.
+last_modified_at: 2020-05-25
 ---
 
 

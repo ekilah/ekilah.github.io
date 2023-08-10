@@ -1,6 +1,7 @@
 ---
 title: Utility Types in TypeScript
 description: An introduction to utility types in TypeScript, which can help you model more advanced types based on one another.
+last_modified_at: 2022-04-15
 ---
 
 ```
