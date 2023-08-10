@@ -1,6 +1,7 @@
 theme: jekyll-theme-minimal
-title: blog.ekilah.dev
-description: "a digital pensieve 🧙‍♂️"
+title: "@ekilah"
+tagline: "a digital pensieve 🧙‍♂️"
+description: "Snippets of learnings from my experiences as a software engineer, home owner, and/or other things, as I find time to write them down."
 show_downloads: false
 logo: /assets/img/logo.jpg
 plugins:

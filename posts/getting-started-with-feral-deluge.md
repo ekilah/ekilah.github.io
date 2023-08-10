@@ -1,3 +1,8 @@
+---
+title: Getting Started with Feral and Deluge
+description: Tips on starting up a seedbox.
+---
+
 ```
 author: @ekilah
 created_at: 2020-05-16

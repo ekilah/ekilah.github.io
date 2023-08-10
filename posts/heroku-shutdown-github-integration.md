@@ -1,3 +1,8 @@
+---
+title: Responding to Heroku's shutdown of their GitHub Integration
+description: A list of problems and solutions I ran into and came up with to keep a project running after Heroku shut down their GitHub integration in 2022 due to a security incident.
+---
+
 ```
 author: @ekilah
 created_at: 2022-04-20
