@@ -5,7 +5,11 @@ show_downloads: false
 logo: /assets/img/logo.jpg
 plugins:
   - jemoji
+  - jekyll-sitemap
 github:
   is_project_page: false
   is_user_page: false
 # markdown: GFM
+
+# for https://github.com/jekyll/jekyll-sitemap
+url: "https://blog.ekilah.dev" # the base hostname & protocol for your site
