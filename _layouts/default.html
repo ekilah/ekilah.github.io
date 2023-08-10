@@ -27,9 +27,13 @@ on 2020-05-17
           <img src="{{site.logo | relative_url}}" alt="Logo" />
         {% endif %}
 
-        {% unless page.is_post %}
-        <p>{{ site.description | default: site.github.project_tagline }}</p>
-        {% endunless %}
+        {% if page.is_post %}
+        <p>{{ site.tagline }}</p>
+        {% else %}
+        <p>{{ site.tagline }}</p>
+        
+        <p>{{ site.description }}</p>
+        {% endif %}
 
         {% if site.github.is_project_page %}
         <p class="view"><a href="{{ site.github.repository_url }}">View the Project on GitHub <small>{{ site.github.repository_nwo }}</small></a></p>
