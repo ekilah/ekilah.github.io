@@ -1,3 +1,11 @@
+## Installing dependencies
+
+```
+bundle install
+```
+
+## Local development
+
 To run the site locally:
 
 ```bash
