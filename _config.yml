@@ -16,3 +16,18 @@ permalink: /:categories/:year/:month/:day/:title # get rid of `.html` extension 
 
 # for https://github.com/jekyll/jekyll-sitemap
 url: "https://blog.ekilah.dev" # the base hostname & protocol for your site
+
+
+# adding `is_post` as a template variable to read in `_layouts/default.html`
+# https://stackoverflow.com/a/23555679/2544629
+defaults:
+  -
+    scope:
+      path: "" # empty string for all files
+    values:
+      is_post: false
+  -
+    scope:
+      path: "/posts/*"
+    values:
+      is_post: true
